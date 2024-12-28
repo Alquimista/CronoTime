@@ -1,0 +1,11 @@
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.venv/
+.git/
+#.vscode/
+#referencia/

@@ -1,0 +1,84 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<Button>:
+    background_normal: ''
+    background_down: ''
+    background_disabled_down: ''
+    background_disabled_normal: ''
+    background_color: 0, 0, 0, 0
+    bgcolor: "#6200ee"
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex(self.bgcolor)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [8]
+
+<StopWatchWidget>:
+    bgcolor: "#eee6dd"
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex(self.bgcolor)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    time_label: time_label
+    lap_label: lap_label
+    start_stop_button: start_stop_button
+    lap_reset_button: lap_reset_button
+    lap_box: lap_box
+    padding: 50
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 32
+        size: root.size
+        Widget:
+        Label:
+            id: time_label
+            font_size: '80sp'
+            bold: True
+            color: "#000000"
+            # text: '0:00:00:[size=40sp]000[/size]'
+            text: '0:00:00:000'
+            font_name: "font/clockicons.ttf"
+            markup: True
+            size_hint_y: None
+            height: 100
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            Widget:
+            Button:
+                id: start_stop_button
+                text: 'Start'
+                on_press: root.on_start_stop_pressed()
+                size_hint: None, None
+                size: 100, 40
+                bgcolor: "#4aae71"
+            Button:
+                id: lap_reset_button
+                text: 'Reset'
+                on_press: root.on_reset_lap_pressed()
+                size_hint: None, None
+                size: 100, 40
+                bgcolor: "#fbad10"
+            Widget:
+        Label:
+            id: lap_label
+            font_size: '16sp'
+            # font_name: "font/clockicons.ttf"
+            bold: True
+            color: "#000000"
+            text: ""
+            size_hint_y: None
+            height: 20
+        ScrollView:
+            id: lap_scroll
+            BoxLayout:
+                id: lap_box
+                orientation: 'vertical'
+                # spacing: 30
+                # padding: 20
+                size_hint_y: None
+                height: self.minimum_height
